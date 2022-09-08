@@ -15,7 +15,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-namespace: spinnaker
+namespace: tsonny
 
 components:
   - core/base
@@ -25,4 +25,7 @@ components:
 patchesStrategicMerge:
   - core/patches/version.yml
   - expose/patch-lb.yml                 # Automatically expose spinnaker
-  - accounts/docker/patch-dockerhub.yml # Docker accounts
+ # - accounts/docker/patch-dockerhub.yml # Docker accounts
+
+transformers:
+  - utilities/unique-service-account.yml
